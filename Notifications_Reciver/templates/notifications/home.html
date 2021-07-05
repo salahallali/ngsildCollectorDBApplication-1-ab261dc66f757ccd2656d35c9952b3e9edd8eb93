@@ -1,0 +1,29 @@
+{% extends "notifications/base.html" %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% for service in services %}
+<html>
+<head>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+ <title>HTML in 10 Simple Steps or Less</title>
+        <meta http-equiv="refresh" content="5" >
+</head>
+<body>
+
+
+            <article class="media content-section">
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2" href="#">{{ service.type }}</a>
+                  <small class="text-muted">{{ service.status }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ service.name }}</a>   {% if service.status  == 'inactive' %}   <i class="far fa-times-circle " style="color: red;"></i> {% else %} <i class="far fa-check-circle" style="color:green"></i> {% endif %}</h2>
+                <p class="article-content">Last update {{ service.date }}</p>
+              </div>
+            </article>
+</body>
+            </html>
+        {% endfor %}
+    {% endif %}
+
+{% endblock content %}
